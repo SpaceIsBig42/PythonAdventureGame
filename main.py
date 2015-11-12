@@ -1,3 +1,8 @@
+#This is just a fun test of programming, Public Domain.
+
+#Note: Documentation in this file (main.py) is virtually none.
+#Read with caution, future me.
+
 from game import *
 
 gameRunning = True
@@ -18,12 +23,12 @@ gameMap = Map({"HillTop": Room("Top of Hill", "You stand here on a hilltop.",
                "Forest": Room("Forest", "You are in a forest.",
                               exits = {"W" : "HillTop"})
                })
-player = Player()
+
+player = Player(location="HillTop")
 game = Game(gameMap, player, playerLocation="HillTop")
 
 while gameRunning: #Main game loop
-    print(game.getCurrentLocation().name)
-    print(game.getCurrentLocation().giveDescription())
+    game.printDescription()
     answer = input("> ").upper().split(" ")
 
     if answer[0] in directionsynonyms or answer[0] == "GO":
@@ -66,7 +71,14 @@ while gameRunning: #Main game loop
                 print("Ypu don't have a {}.".format(answer[1].lower()))
         else:
             print("What do you want to drop?")
-        
+
+    elif answer[0] == "EXIT":
+        exitanswer = input("Really exit? (Y/N) > ").upper()
+        if exitanswer == "Y":
+            print("Goodbye.")
+            exit(0);
+        else:
+            print("Okay, then, so you don't exit.")
     else:
         print("I don't understand.")
 

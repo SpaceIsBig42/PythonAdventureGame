@@ -1,5 +1,10 @@
+#This is just a fun test of programming, Public Domain.
+
 class Item():
-    """Item base class"""
+    
+    """Item base class. Currently, items are VERY barebones.
+       Not much set in stone yet."""
+    
     def __init__(self, name, description, floordescription=None):
         self.name = name
         self.description = description
@@ -21,11 +26,21 @@ class Weapon(Item):
 
 
 class LightSource(Item):
-    def __init__(self, name, description, floordescription, life):
+    """Light source class, barebones."""
+    
+    def __init__(self, name, description, floordescription, life, lit=False):
         super().__init__(name = name,
                          description = description,
                          floordescription = floordescription)
+        
         self.life = life
+        self.lit = lit
+
+    def canBeLit():
+        if not lit and life > 0:
+            return True
+        else:
+            return False
 
 class Structure(Item):
     def __init__(self, name, floordescription):
